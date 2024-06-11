@@ -1,0 +1,1 @@
+<!-- Hero della homepage con immagine di sfondo e una frase che spiega in sintesi l'utilità dell'applicativo -->

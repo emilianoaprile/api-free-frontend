@@ -1,0 +1,1 @@
+<!-- pagina di dettaglio del post cliccato (show) -->
