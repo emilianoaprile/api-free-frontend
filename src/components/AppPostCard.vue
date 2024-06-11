@@ -13,7 +13,7 @@ export default {
 
 <template>
     <div class="card">
-        <img src="/logo.png" class="card_image" :alt="post.title" />
+        <img :src="post.image" class="card_image" :alt="post.title" />
         <div class="card_content">
             <div class="card_header">
                 <img class="card_thumb" src="/logoGreen.png" alt="" />
@@ -36,7 +36,6 @@ export default {
 
 <style scoped>
 .card {
-    background-color: #00BF63;
     border-radius: 8px;
     box-shadow: 0px 0px 43px 22px rgba(255, 255, 255, 0.1);
     overflow: hidden;
@@ -45,7 +44,8 @@ export default {
 
 .card_image {
     width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
 }
 
 .card_header {
@@ -77,7 +77,7 @@ export default {
 .card_description {
     padding: 10px;
     margin: 0;
-    color: #666;
+    color: black;
     font-size: 14px;
     background-color: white;
     border-top: 1px solid #ddd;
