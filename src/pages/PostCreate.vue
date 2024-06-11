@@ -16,6 +16,12 @@ export default {
     };
   },
   methods: {
+    onUploadImage(event) {
+      const {target} = event;
+      if(target && target.files) {
+        this.image = target.files[0];
+      }
+    },
     async fetchCategories() {
       try {
         const response = await axios.get('http://localhost:3000/categories', {
@@ -52,10 +58,10 @@ export default {
         formData.append('content', this.content);
         formData.append('published', true);
         formData.append('categoryId', this.categoryId);
-        const selectedTags = [this.tagsId];
-        formData.append('tags', JSON.stringify(selectedTags));
+        this.tagsId.forEach(tagId => {
+          formData.append('tags', tagId);
+        });
         formData.append('userId', this.userId);
-        console.log('array tags:', selectedTags)
 
         const response = await axios.post('http://localhost:3000/posts', formData, {
           headers: {
@@ -86,7 +92,7 @@ export default {
       </div>
       <div class="form-group">
         <label for="image">Immagine:</label>
-        <input type="file" id="image" class="form-control">
+        <input type="file" id="image" class="form-control" @change="onUploadImage">
       </div>
       <div class="form-group">
         <label for="content">Contenuto:</label>
@@ -99,9 +105,9 @@ export default {
         </select>
       </div>
       <div class="form-group">
-        <label for="category">Tags:</label>
-        <select id="category" v-model="tagsId" class="form-control">
-          <option v-for="tag in tags" :key="tag.id" :value="tag.id">{{ tag.name }}</option>
+        <label for="tags">Tags:</label>
+        <select id="tags" v-model="tagsId" class="form-control" multiple>
+          <option v-for="tag in tags" :key="tag.id" name="tags[]" :value="tag.id">{{ tag.name }}</option>
         </select>
       </div>
       <button type="submit">Crea Post</button>
