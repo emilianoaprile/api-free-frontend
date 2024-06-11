@@ -16,7 +16,7 @@ export default {
         <img :src="post.image" class="card_image" :alt="post.title" />
         <div class="card_content">
             <div class="card_header">
-                <img class="card_thumb" src="/logoGreen.png" alt="" />
+                <img class="card_thumb" src="/immagine_profilo.png" alt="" />
                 <div class="card_header-text">
                     <h3 class="card_title">{{ post.title }}</h3>
                 </div>
@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .card {
     border-radius: 8px;
-    box-shadow: 0px 0px 43px 22px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 21px 2px rgba(255, 255, 255, 0.18);
     overflow: hidden;
     width: auto;
 }

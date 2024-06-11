@@ -1,1 +1,14 @@
-<!-- pagina di creazione del post con un form  -->
+<script>
+export default {
+    
+}
+</script>
+
+<template>
+    <div>
+        post create
+    </div>
+</template>
+
+<style scoped>
+</style>

@@ -24,6 +24,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from './pages/Home.vue';
 import Login from './pages/Login.vue';
 import Posts from './pages/Posts.vue';
+import PostCreate from './pages/PostCreate.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -42,6 +43,11 @@ const router = createRouter({
             path: '/posts',
             name: 'AppPosts',
             component: Posts
+        },
+        {
+            path: '/posts/create',
+            name: 'AppPostCreate',
+            component: PostCreate
         }
     ]
 });
