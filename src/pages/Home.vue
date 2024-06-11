@@ -7,11 +7,6 @@ export default {
     data() {
         return {
             name: 'Home',
-            email: '',
-            password: '',
-            posts: [],
-            user: {},
-            authToken: localStorage.getItem('authToken'),
         }
     }
 }

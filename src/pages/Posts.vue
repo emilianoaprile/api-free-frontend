@@ -1,41 +1,18 @@
-<template>
-    <div class="posts-page">
-        <h1>Lista dei Posts</h1>
-        <div v-if="posts.length > 0">
-            <ul>
-                <li v-for="post in posts" :key="post.id">
-                    <h2>{{ post.title }}</h2>
-                    <p>{{ post.content }}</p>
-                    <p v-if="post.tags.length > 0">
-                        <span v-for="(tag, index) in post.tags" :key="index">
-                            {{ tag.name }}
-                            <!-- Aggiungo una virgola dopo ogni tag, eccetto per l'ultimo -->
-                            <span v-if="index < post.tags.length - 1">, </span>
-                        </span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div v-else>
-            <p>Nessun post trovato.</p>
-        </div>
-    </div>
-</template>
-
 <script>
 import axios from 'axios';
-import { useRouter } from 'vue-router';
+import AppPostCard from '../components/AppPostCard.vue';
 
 export default {
+    components: {
+        AppPostCard,
+    },
+
     data() {
         return {
             posts: [],
             user: {},
             authToken: localStorage.getItem('authToken'),
         };
-    },
-    mounted() {
-        this.fetchPosts();
     },
     methods: {
         fetchPosts() {
@@ -51,18 +28,49 @@ export default {
                 })
         }
     },
-    created() {
-        this.fetchPosts();
-    },
     mounted() {
+        this.fetchPosts();
         this.authToken = localStorage.getItem('authToken');
     }
 };
 </script>
+<template>
+    <div class="posts-page">
+        <!-- <h1>Lista dei Posts</h1>
+        <div v-if="posts.length > 0">
+            <ul>
+                <li v-for="post in posts" :key="post.id">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content }}</p>
+                    <p v-if="post.tags.length > 0">
+                        <span v-for="(tag, index) in post.tags" :key="index">
+                            {{ tag.name }}
+                            <span v-if="index < post.tags.length - 1">, </span>
+                        </span>
+                    </p>
+                </li>
+            </ul>
+        </div> -->
+        <h1>Lista dei Posts</h1>
+        <div v-if="posts.length > 0">
+            <div class="cards">
+                <AppPostCard v-for="post in posts" :key="post.id" :post="post" />
+            </div>
+        </div>
+        <div v-else>
+            <p>Nessun post trovato.</p>
+        </div>
+    </div>
+    <div class="cards">
+    </div>
+
+
+</template>
+
 
 <style scoped>
 .posts-page {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -88,5 +96,12 @@ export default {
 
 .posts-page p {
     margin-bottom: 5px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
 }
 </style>
